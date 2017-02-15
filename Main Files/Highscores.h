@@ -8,7 +8,7 @@ using namespace std;
 // Saving Highscores:
 struct player
 {
-	char name[18];
+	char name[18] = "Player1";
 	long int time;
 }score;
 
@@ -80,5 +80,24 @@ void printHighscores()
 		printf(" %c",186);
 	}
 	printf("\n	%c",200); print(20,205); printf("%c",207); print(20,205); printf("%c",188);
-	//system("pause");
+	
+	printf("\n");
+	
+	
 }
+
+void resetHighscores()
+{
+	FILE *fptr;
+	fptr = fopen("scores.su", "wb");
+
+	//printf("Enter Player Name - ");
+	//gets(score.name);  // I need to make name.length <=18
+	//score.name = {'R'};
+	//score.name[18]='\0';
+	//score.time = 0;
+	//fwrite( (char*)&score, 1, sizeof(score),fptr );
+
+	fclose(fptr);
+}
+
