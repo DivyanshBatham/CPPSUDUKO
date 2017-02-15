@@ -61,11 +61,13 @@ void startGame()
 	grid[x][y].bOpen = '[';
 	grid[x][y].bClose = ']';
 	
+	system("cls");
+	creategrid();
+	
 	char ch;
 	while( (ch=getch()) != 27  )
 	{
 		system("cls");
-		//creategrid();
 		
 		switch(ch)
 		{
