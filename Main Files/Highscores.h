@@ -68,22 +68,16 @@ void printHighscores()
 	printf(" %c",186);
 
 	// PRINTING :
-	int count=1;
 	while(fread( (char*)&score, 1, sizeof(score),fptr ))
 	{
-				printf("\n	%c",199); print(20,196); printf("%c",197); print(20,196); printf("%c",182);
+		printf("\n	%c",199); print(20,196); printf("%c",197); print(20,196); printf("%c",182);
 		printf("\n	%c",186);
-
 		// Instead of printing, add it to top10 with insertion
 		paddedName(score.name);			// Input from file
-
 		printf("%c ",179);
-
 		// Instead of printing, add it to top10 with insertion
 		paddedTime(score.time);			// Input from file
-
 		printf(" %c",186);
-
 	}
 	printf("\n	%c",200); print(20,205); printf("%c",207); print(20,205); printf("%c",188);
 	//system("pause");
