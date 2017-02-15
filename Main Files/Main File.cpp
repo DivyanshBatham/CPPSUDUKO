@@ -15,15 +15,17 @@ void creategrid();
 void fillDigits();
 bool isValidSuduko();
 void startGame();
+void mainMenu( int choice );
+void resetMenu( int choice);
+const char current = 175;
 
 int main()
 {
+	start:
+	system("cls");
 	int choice = 1;
-	char current = 175;
 	char ch;
-	cout << "CPP SUDUKO!\n"; 
-	cout << (choice==1 ? current : ' ') << " START\n";
-	cout << (choice==2 ? current : ' ') << " HIGHSCORE";
+	mainMenu(choice);
 	while( (ch=getch()) != 13  )
 	{
 		system("cls");
@@ -33,23 +35,91 @@ int main()
 			case 72 : if(choice>1) choice--;	break;
 			case 80 : if(choice<2) choice++;	break;
 		}	
-	
-		cout << "CPP SUDUKO!\n";
-		cout << (choice==1 ? current : ' ') << " START\n";
-		cout << (choice==2 ? current : ' ') << " HIGHSCORE";
+		mainMenu(choice);
 	}
 	
 	switch(choice)
 	{
-		case 1 : startGame(); break;
-		case 2 : printHighscores(); break;
+		case 1 : startGame();
+				
+		case 2 : score:
+				 printHighscores();
+				 choice = 1;
+				 cout << "	      ";
+				 cout << (choice==1 ? current : ' ') << " BACK\t ";
+				 cout << (choice==2 ? current : ' ') << " RESET     ";
+				 cout << (choice==3 ? current : ' ') << " EXIT";
+				 while( (ch=getch()) != 13  )
+				{
+					//system("cls");
+					switch(ch)
+					{
+						// Arrow Keys are pressed:
+						case 75 : if(choice>1) choice--;	break;
+						case 77 : if(choice<3) choice++;	break;
+					}	
+					print(36,'\b');
+					cout << "	      ";
+					cout << (choice==1 ? current : ' ') << " BACK\t ";
+					cout << (choice==2 ? current : ' ') << " RESET     ";
+					cout << (choice==3 ? current : ' ') << " EXIT";
+				}				 
+				 if(choice==1)
+				 	goto start;
+				 if(choice==3)
+				    goto end;
+				 if(choice==2)
+				 {
+				 	system("cls");
+				 	choice = 1;
+					resetMenu(choice);
+					while( (ch=getch()) != 13  )
+					{
+						system("cls");
+						switch(ch)
+						{
+							// Arrow Keys are pressed:
+							case 75 : if(choice>1) choice--;	break;
+							case 77 : if(choice<2) choice++;	break;
+						}	
+						resetMenu(choice);
+					}	
+					if(choice==1)
+					  goto score;
+					else
+					 resetHighscores();
+				 }
+				 break;
 	}
 	
-	
+	end:
 	return 0;
 }
 
+void resetMenu( int choice )
+{
+	cout << "\n\n\n\n	" << char(201); print(40,205); cout << char(187);
+	cout << "\n	" << char(186); print(40,' ');  cout << char(186);
+	cout << "\n	" << char(186) << " Are you sure you want to RESET Scores? " << char(186);
+	cout << "\n	" << char(186); print(40,' ');  cout << char(186);
+	cout << "\n	" << char(186) << "\t  " << (choice==1 ? current : ' ') << " NO\t    ";
+	cout << (choice==2 ? current : ' ') << " YES(Exit) " << "         " <<char(186);
+	cout << "\n	" << char(186); print(40,' ');  cout << char(186);
+	cout <<	"\n	" << char(200); print(40,205); cout << char(188);
+}
 
+void mainMenu( int choice )
+{
+	cout << "\n\n\n\n	" << char(201); print(41,205); cout << char(187);
+	cout << "\n	" << char(186); print(41,' ');  cout << char(186);
+	cout << "\n	" << char(186); print(15,' '); cout << " CPP SUDUKO "; print(14,' '); cout << char(186) ;
+	cout << "\n	" << char(186); print(41,' ');  cout << char(186);
+	cout << "\n	" << char(186) << "\t" << (choice==1 ? current : ' ') << " START"; print(27,' '); cout <<char(186);
+	cout << "\n	" << char(186) << "\t" << (choice==2 ? current : ' ') << " HIGHSCORE"; print(23,' '); cout <<char(186);
+	cout << "\n	" << char(186); print(41,' ');  cout << char(186);
+	cout << "\n	" << char(186); print(41,' ');  cout << char(186);
+	cout <<	"\n	" << char(200); print(41,205); cout << char(188);
+}
 void startGame()
 {
 	time_t startTime, endTime, diffTime;
