@@ -199,12 +199,7 @@ void startGame()
 					  	cout <<"Wrong";
 					  break;	
 		}
-		/*
-		if(grid[x][y].isEdit == 'F')
-			system("COLOR 8 ");
-		else
-			system("COLOR 8 ");
-		*/
+		
 		creategrid();
 		
 	}
